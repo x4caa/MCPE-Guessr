@@ -1,4 +1,4 @@
-# MCPE-Guessr
+# MCPE Guessr
 Guess where you are in Minecraft server hubs!
 
 # SRC PROBABLY SCUFFED
