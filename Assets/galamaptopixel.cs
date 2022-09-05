@@ -17,6 +17,8 @@ public class galamaptopixel : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Button minimizemap;
     [SerializeField] private Button maximizemap;
     [SerializeField] private Animator mapanims;
+    [SerializeField] private Button confirmanswer;
+    [SerializeField] TextMeshProUGUI confirmanswertext;
     private float currentx;
     private float currenty;
 
@@ -52,6 +54,9 @@ public class galamaptopixel : MonoBehaviour, IPointerClickHandler
         // reset map to minimized and change button
         minimizemap.gameObject.SetActive(false);
         maximizemap.gameObject.SetActive(true);
+        
+        confirmanswer.image.color = new Color32(255,0,0,150);
+        confirmanswertext.text = "Confirm Answer";
 
         plusscore.gameObject.SetActive(false);
 
@@ -105,15 +110,14 @@ public class galamaptopixel : MonoBehaviour, IPointerClickHandler
             // Set the red pin to the position it should be, and set the coords text
             pin.position=localPos / 2f;
             pin.anchoredPosition = localPos;
+            confirmanswer.image.color = new Color32(26,226,10,150);
             coordsoverlay.text = "Coords: " + Mathf.RoundToInt(localPos.x).ToString() + ", " + Mathf.RoundToInt(localPos.y).ToString();
             Debug.Log(Mathf.RoundToInt(localPos.x).ToString() + ", " + Mathf.RoundToInt(localPos.y).ToString());
         }
 
     }
-    void Update()
+    public void CALCPOINTS()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
             if (finished == false) {
 
                 // check if player placed pin
@@ -132,6 +136,9 @@ public class galamaptopixel : MonoBehaviour, IPointerClickHandler
                 //set pin2 to the position where the coords actually were
                 pin2.position = new Vector2(coordsx, coordsy);
                 pin2.anchoredPosition = new Vector2(coordsx, coordsy);
+
+                confirmanswer.image.color = new Color32(43,10,226,150);
+                confirmanswertext.text = "Next Level";
 
                 Debug.Log(score);
                 score = 500 - score;
@@ -159,4 +166,3 @@ public class galamaptopixel : MonoBehaviour, IPointerClickHandler
             
         }
     }
-}
